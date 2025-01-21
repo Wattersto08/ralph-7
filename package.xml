@@ -3,9 +3,9 @@
 <package format="3">
   <name>ralph_7</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Simple package to control a diffbot please see https://github.com/Wattersto08/ralph-7/tree/master for further info</description>
   <maintainer email="tom.j.watters@gmail.com">Tom</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
