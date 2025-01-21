@@ -100,6 +100,12 @@ def generate_launch_description():
         )
     )
 
+    delayed_foxglove = RegisterEventHandler(
+        event_handler=OnProcessStart(
+            target_action=lidar,
+            on_start=[foxglove],
+        )
+    )
  
     # Code for delaying a node (I haven't tested how effective it is)
     # 
@@ -127,5 +133,5 @@ def generate_launch_description():
         delayed_joint_broad_spawner,
         delayed_rplidar,
         #gps,
-        foxglove
+        delayed_foxglove
     ])
