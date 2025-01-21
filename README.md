@@ -32,6 +32,7 @@ This list is divided into specific lists to cover each remit of the project.
 - [ ] create a bigger map of my flat, ralph was for more than just the bedroom! 
 - [ ] generate a new URDF based on the fusion 360 CAD model. 
 - [ ] create bash script for initialising and installing all required packages and utils. 
+- [ ] implement docker for porting to new [hardware](https://www.nvidia.com/en-gb/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/) *hint hint* 
 
 ### Hardware goals 
 - [ ] look into new wheels for the platform, I fear the current foam RC wheels are not up to the job and are not performing well on carpeted surfaces. [these](https://www.amazon.co.uk/gp/product/B07F9SSSND/ref=ox_sc_act_title_1?smid=A10EGWLGS2DC0K&psc=1) look like great candidates.
