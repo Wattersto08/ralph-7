@@ -26,6 +26,6 @@ def generate_launch_description():
 
 
     return LaunchDescription([
-        teleop_node,
-        twist_stamper       
+        teleop_node#,
+        #twist_stamper       
     ])

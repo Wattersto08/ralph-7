@@ -76,6 +76,14 @@ def generate_launch_description():
                          'angle_compensate': True}],
     )
 
+    hardware_interface = Node(
+            package='micro_ros_agent',
+            executable='micro_ros_agent',
+            name='hardware_interface',
+            arguments=["serial", "/dev/ttyACM0"],
+    )
+
+
     gps = Node(
             package='vk_162_gps',
             executable='gps',
@@ -102,10 +110,20 @@ def generate_launch_description():
 
     delayed_foxglove = RegisterEventHandler(
         event_handler=OnProcessStart(
-            target_action=lidar,
+            target_action=controller_manager,
             on_start=[foxglove],
         )
     )
+
+    joy_params = os.path.join(get_package_share_directory('ralph_7'),'config','joystick.yaml')
+
+    teleop_node = Node(
+            package='teleop_twist_joy',
+            executable='teleop_node',
+            name='teleop_node',
+            parameters=[joy_params],
+            remappings=[('/cmd_vel','/diff_cont/cmd_vel_unstamped')]
+         )
  
     # Code for delaying a node (I haven't tested how effective it is)
     # 
@@ -131,7 +149,9 @@ def generate_launch_description():
         delayed_controller_manager,
         delayed_diff_drive_spawner,
         delayed_joint_broad_spawner,
+        teleop_node,
+    #    hardware_interface,
         delayed_rplidar,
         #gps,
-        delayed_foxglove
+        foxglove
     ])
