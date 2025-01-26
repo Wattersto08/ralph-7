@@ -80,7 +80,7 @@ def generate_launch_description():
             package='micro_ros_agent',
             executable='micro_ros_agent',
             name='hardware_interface',
-            arguments=["serial", "/dev/ttyACM0"],
+            arguments=["serial", "--dev","/dev/ttyACM0"]
     )
 
 
@@ -91,7 +91,7 @@ def generate_launch_description():
             output='screen',
             emulate_tty=True,
             parameters=[
-                {'deviceName': '/dev/ttyACM0'}
+                {'deviceName': '/dev/vkgps'}
             ]
     )
 
@@ -150,8 +150,8 @@ def generate_launch_description():
         delayed_diff_drive_spawner,
         delayed_joint_broad_spawner,
         teleop_node,
-    #    hardware_interface,
-        delayed_rplidar,
-        #gps,
+        hardware_interface,
+        #delayed_rplidar,
+        gps,
         foxglove
     ])
