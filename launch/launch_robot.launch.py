@@ -145,13 +145,13 @@ def generate_launch_description():
 
     # Launch them all!
     return LaunchDescription([
-        rsp,
-        delayed_controller_manager,
-        delayed_diff_drive_spawner,
-        delayed_joint_broad_spawner,
-        teleop_node,
+      #  rsp,
+      #  delayed_controller_manager,
+      #  delayed_diff_drive_spawner,
+      #  delayed_joint_broad_spawner,
+      #  teleop_node,
         hardware_interface,
         #delayed_rplidar,
-        gps,
+       # gps,
         foxglove
     ])
