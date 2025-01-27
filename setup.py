@@ -20,7 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'gps = ralph_7.gps_pub:main'
+            'color = ralph_7.color_pub:main',
+            'launch_robot = ralph_7.launch_robot.launch'
+
         ],
     },
 )

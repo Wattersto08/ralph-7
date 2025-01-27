@@ -133,6 +133,6 @@ def generate_launch_description():
         teleop_node,
         hardware_interface,
         delayed_rplidar,
-        gps,
+        #gps,
         foxglove
     ])
