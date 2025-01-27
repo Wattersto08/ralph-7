@@ -124,34 +124,15 @@ def generate_launch_description():
             parameters=[joy_params],
             remappings=[('/cmd_vel','/diff_cont/cmd_vel_unstamped')]
          )
- 
-    # Code for delaying a node (I haven't tested how effective it is)
-    # 
-    # First add the below lines to imports
-    # from launch.actions import RegisterEventHandler
-    # from launch.event_handlers import OnProcessExit
-    #
-    # Then add the following below the current diff_drive_spawner
-    # delayed_diff_drive_spawner = RegisterEventHandler(
-    #     event_handler=OnProcessExit(
-    #         target_action=spawn_entity,
-    #         on_exit=[diff_drive_spawner],
-    #     )
-    # )
-    #
-    # Replace the diff_drive_spawner in the final return with delayed_diff_drive_spawner
 
-
-
-    # Launch them all!
     return LaunchDescription([
-      #  rsp,
-      #  delayed_controller_manager,
-      #  delayed_diff_drive_spawner,
-      #  delayed_joint_broad_spawner,
-      #  teleop_node,
+        rsp,
+        delayed_controller_manager,
+        delayed_diff_drive_spawner,
+        delayed_joint_broad_spawner,
+        teleop_node,
         hardware_interface,
-        #delayed_rplidar,
-       # gps,
+        delayed_rplidar,
+        gps,
         foxglove
     ])

@@ -35,20 +35,21 @@ This list is divided into specific lists to cover each remit of the project.
 - [ ] implement docker for porting to new [hardware](https://www.nvidia.com/en-gb/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/) *hint hint* 
 
 ### Hardware goals 
-- [ ] look into new wheels for the platform, I fear the current foam RC wheels are not up to the job and are not performing well on carpeted surfaces. [these](https://www.amazon.co.uk/gp/product/B07F9SSSND/ref=ox_sc_act_title_1?smid=A10EGWLGS2DC0K&psc=1) look like great candidates.
+- [x] look into new wheels for the platform, I fear the current foam RC wheels are not up to the job and are not performing well on carpeted surfaces. [these](https://www.amazon.co.uk/gp/product/B07F9SSSND/ref=ox_sc_act_title_1?smid=A10EGWLGS2DC0K&psc=1) look like great candidates.
 - [ ] tune the PID and validate the ros2 control surfaces.
 - [ ] more scientifically measure the correct pulses per revolution of the DC encoder motors. 
-- [ ] implement a uROS mcu to make the following objects availible within ros2: 
-- [ ] VBUS - battery voltage 
+- [x] implement a uROS mcu to make the following objects availible within ros2: 
+- [x] VBUS - battery voltage 
 - [ ] some sort of local temperature and humidity measurements. 
-- [ ] add ros2 control of the 36 neopixel's used for the headlights and status LED's. 
+- [x] add ros2 control of the 36 neopixel's used for the headlights and status LED's. 
 - [ ] design an all new PCB for consolidating the various modules being used. 
 - [ ] design / source a new castor wheel, the current one is generating a lot of resistance, amplifying the issue with the wheels. 
 - [ ] order and validate the latest PCB. 
-- [ ] Fix Castor mount hight, currently too low. 
+- [x] Fix Castor mount hight, currently too low. 
 - [ ] add current motor controller parts to one large plate. 
 - [ ] add active cooling to the chassis. 
 - [ ] Create mechanical BOM. 
+- [ ] Create URDF folder within package
 
 
 
