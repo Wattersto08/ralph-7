@@ -21,8 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'color = ralph_7.color_pub:main',
-            'launch_robot = ralph_7.launch_robot.launch'
-
+            'launch_robot = ralph_7.launch_robot.launch',
         ],
     },
 )

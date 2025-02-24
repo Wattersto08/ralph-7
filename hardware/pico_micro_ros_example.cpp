@@ -6,6 +6,7 @@
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 #include <std_msgs/msg/float32.h>
+#include <std_msgs/msg/int32.h>
 #include <rmw_microros/rmw_microros.h>
 #include <std_msgs/msg/color_rgba.h>
 #include "pico/stdlib.h"
@@ -13,9 +14,10 @@
 #include "hardware/adc.h"
 #include <PicoLed.hpp>
 
-const uint LED_PIN = 28;
+const uint LED_PIN = 12;
 const uint ADC_PIN = 0;
-const uint LED_LENGTH = 1;
+const uint LED_LENGTH = 24;
+const uint FAN_PIN = 27;
 
 rcl_publisher_t publisher;
 std_msgs__msg__Float32 msg;
@@ -24,6 +26,10 @@ PicoLed::PicoLedController *ledStripPtr;
 
 rcl_subscription_t subscriber;
 std_msgs__msg__ColorRGBA sub_msg;
+
+rcl_subscription_t subscriberFAN;
+std_msgs__msg__Int32 FANsub_msg;
+
 
 void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
 {
@@ -39,6 +45,12 @@ void subscription_callback(const void * msgin)
     ledStripPtr->show();
 }
 
+void subscription_callback_FAN(const void * msgin)
+{
+    // write int value to fan > 0 will switch fan on - pwm control to come. 
+    gpio_put(FAN_PIN, FANsub_msg.data);
+}
+
 int main()
 {
     adc_init();
@@ -52,11 +64,18 @@ int main()
 		pico_serial_transport_write,
 		pico_serial_transport_read
 	);
-
+        
+    stdio_init_all();
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
-    stdio_init_all();
+
+    gpio_init(FAN_PIN);
+    gpio_set_dir(FAN_PIN, GPIO_OUT);
+
+    
+    
+    
     auto ledStrip = PicoLed::addLeds<PicoLed::WS2812B>(pio0, 0, LED_PIN, LED_LENGTH, PicoLed::FORMAT_GRB);
     ledStripPtr = &ledStrip;
     ledStrip.setBrightness(255);
@@ -95,18 +114,28 @@ int main()
         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, ColorRGBA),
         "chassis/NeoLED");
 
+    rcl_ret_t rca = rclc_subscription_init_default(
+        &subscriberFAN, &node,
+        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
+        "chassis/Fans");
+
     rclc_timer_init_default(
         &timer,
         &support,
         RCL_MS_TO_NS(1000),
         timer_callback);
 
-    rclc_executor_init(&executor, &support.context, 2, &allocator);
+    rclc_executor_init(&executor, &support.context, 3, &allocator);
     rclc_executor_add_timer(&executor, &timer);
         // Add subscription to the executor
+
     rc = rclc_executor_add_subscription(
         &executor, &subscriber, &sub_msg,
         &subscription_callback, ON_NEW_DATA);
+
+    rca = rclc_executor_add_subscription(
+        &executor, &subscriberFAN, &FANsub_msg,
+        &subscription_callback_FAN, ON_NEW_DATA);
 
 
     msg.data = 0;

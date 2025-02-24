@@ -4,7 +4,7 @@
     <joint name="laser_joint" type="fixed">
         <parent link="chassis"/>
         <child link="laser_frame"/>
-        <origin xyz="0.267 0.075 0.08" rpy="0 0 ${pi/2}"/>
+        <origin xyz="0.267 0.1025 0.08" rpy="0 0 ${pi/2}"/>
     </joint>
 
     <link name="laser_frame">
