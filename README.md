@@ -41,13 +41,14 @@ This list is divided into specific lists to cover each remit of the project.
 - [x] implement a uROS mcu to make the following objects availible within ros2: 
 - [x] VBUS - battery voltage 
 - [ ] some sort of local temperature and humidity measurements. 
+*Acquired sensor, further work needed to get it intigrated*
 - [x] add ros2 control of the 36 neopixel's used for the headlights and status LED's. 
 - [ ] design an all new PCB for consolidating the various modules being used. 
 - [ ] design / source a new castor wheel, the current one is generating a lot of resistance, amplifying the issue with the wheels. 
 - [ ] order and validate the latest PCB. 
 - [x] Fix Castor mount hight, currently too low. 
 - [ ] add current motor controller parts to one large plate. 
-- [ ] add active cooling to the chassis. 
+- [x] add active cooling to the chassis. 
 - [ ] Create mechanical BOM. 
 - [ ] Create URDF folder within package
 
