@@ -1,5 +1,5 @@
 # set the udev rule , make the device_port be fixed by rplidar
 #
 
-KERNEL=="tty*", ATTRS{idVendor}=="1d6b", ATTRS{idProduct}=="0002", MODE="666", SYMLINK+="motorcontroller", GROUP="dialout"
+KERNEL=="ttyUSB*", SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="666", SYMLINK+="motorcontroller", GROUP="dialout"
 
