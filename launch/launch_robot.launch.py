@@ -83,6 +83,15 @@ def generate_launch_description():
             arguments=["serial", "--dev","/dev/ttyACM0"]
     )
 
+    depth_cam = Node(
+            package='realsense2_camera',
+            executable='realsense2_camera_node',
+            name='realsense2_node',
+            parameters=[{'enable_color':'false',
+                         'spatial_filter.enable': 'true', 
+                         'temporal_filter.enable': 'true'}],
+    )
+
 
     gps = Node(
             package='vk_162_gps',
@@ -131,6 +140,7 @@ def generate_launch_description():
         delayed_diff_drive_spawner,
         delayed_joint_broad_spawner,
         teleop_node,
+        depth_cam,
         hardware_interface,
         delayed_rplidar,
         #gps,
